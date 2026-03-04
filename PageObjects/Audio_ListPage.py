@@ -1,15 +1,9 @@
 from selenium.webdriver.common.by import By
 from BaseLayer.executorBase import ExecutorBase
 from PageObjects.Common.siteHeader import SiteHeader
-import logging
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
 
-class audio_listpage(SiteHeader, ExecutorBase):
+class Audio_listPage(SiteHeader, ExecutorBase):
 
     AUDIO_MENU_XPATH = '//*[@id="app"]/div/section/main/div/section/aside/div/ul/li[5]'
     MICROPHONE_VOLUME_XPATH = '//*[@id="app"]/div/section/main/div/section/main/div/form/div[2]/div/div/div[1]/div/input'
@@ -30,10 +24,10 @@ class audio_listpage(SiteHeader, ExecutorBase):
         """点击音频菜单"""
         try:
             self._click_element((By.XPATH, self.AUDIO_MENU_XPATH))
-            logger.info("成功点击音频菜单")
+            self.logger.info("成功点击音频菜单")
             return True
         except Exception as e:
-            logger.error(f"点击音频菜单失败：{str(e)}")
+            self.logger.error(f"点击音频菜单失败：{str(e)}")
             return False
 
     def _set_microphone_volume(self, volume=None):
@@ -41,10 +35,10 @@ class audio_listpage(SiteHeader, ExecutorBase):
         volume = volume if volume is not None else self.default_microphone_volume
         try:
             self._send_keys_to_input((By.XPATH, self.MICROPHONE_VOLUME_XPATH), volume)
-            logger.info(f"成功设置麦克风音量为：{volume}")
+            self.logger.info(f"成功设置麦克风音量为：{volume}")
             return True
         except Exception as e:
-            logger.error(f"设置麦克风音量失败：{str(e)}")
+            self.logger.error(f"设置麦克风音量失败：{str(e)}")
             return False
 
     def _set_speaker_volume(self, volume=None):
@@ -52,20 +46,20 @@ class audio_listpage(SiteHeader, ExecutorBase):
         volume = volume if volume is not None else self.default_speaker_volume
         try:
             self._send_keys_to_input((By.XPATH, self.SPEAKER_VOLUME_XPATH), volume)
-            logger.info(f"成功设置扬声器音量为：{volume}")
+            self.logger.info(f"成功设置扬声器音量为：{volume}")
             return True
         except Exception as e:
-            logger.error(f"设置扬声器音量失败：{str(e)}")
+            self.logger.error(f"设置扬声器音量失败：{str(e)}")
             return False
 
     def _enable_audio_detect(self):
         """启用音频检测"""
         try:
             self._click_element((By.XPATH, self.AUDIO_DETECT_XPATH))
-            logger.info("成功启用音频检测")
+            self.logger.info("成功启用音频检测")
             return True
         except Exception as e:
-            logger.error(f"启用音频检测失败：{str(e)}")
+            self.logger.error(f"启用音频检测失败：{str(e)}")
             return False
 
     def _set_decibel(self, decibel=None):
@@ -73,10 +67,10 @@ class audio_listpage(SiteHeader, ExecutorBase):
         decibel = decibel if decibel is not None else self.default_decibel
         try:
             self._send_keys_to_input((By.XPATH, self.DECIBEL_XPATH), decibel)
-            logger.info(f"成功设置分贝阈值为：{decibel}")
+            self.logger.info(f"成功设置分贝阈值为：{decibel}")
             return True
         except Exception as e:
-            logger.error(f"设置分贝阈值失败：{str(e)}")
+            self.logger.error(f"设置分贝阈值失败：{str(e)}")
             return False
 
     def _set_push_interval(self, interval=None):
@@ -84,20 +78,20 @@ class audio_listpage(SiteHeader, ExecutorBase):
         interval = interval if interval is not None else self.default_push_interval
         try:
             self._send_keys_to_input((By.XPATH, self.PUSH_INTERVAL_XPATH), interval)
-            logger.info(f"成功设置推送间隔为：{interval}")
+            self.logger.info(f"成功设置推送间隔为：{interval}")
             return True
         except Exception as e:
-            logger.error(f"设置推送间隔失败：{str(e)}")
+            self.logger.error(f"设置推送间隔失败：{str(e)}")
             return False
 
     def _click_ok_button(self):
         """点击确认按钮"""
         try:
             self._click_element((By.XPATH, self.OK_BUTTON_XPATH))
-            logger.info("成功点击确认按钮")
+            self.logger.info("成功点击确认按钮")
             return True
         except Exception as e:
-            logger.error(f"点击确认按钮失败：{str(e)}")
+            self.logger.error(f"点击确认按钮失败：{str(e)}")
             return False
 
     def set_audio(self, microphone_volume=None, speaker_volume=None, 
@@ -118,10 +112,10 @@ class audio_listpage(SiteHeader, ExecutorBase):
 
         for step_name, step_func in steps:
             try:
-                logger.info(f"开始执行步骤：{step_name}")
+                self.logger.info(f"开始执行步骤：{step_name}")
                 step_func()
-                logger.info(f"步骤成功：{step_name}")
+                self.logger.info(f"步骤成功：{step_name}")
             except Exception as e:
-                logger.error(f"步骤失败但继续执行：{step_name} - 错误: {str(e)}")
+                self.logger.error(f"步骤失败但继续执行：{step_name} - 错误: {str(e)}")
 
-        logger.info("音频配置流程执行完毕，无论成功或失败均已完成遍历。")
+        self.logger.info("音频配置流程执行完毕，无论成功或失败均已完成遍历。")

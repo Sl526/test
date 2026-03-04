@@ -2,16 +2,8 @@ from selenium.webdriver.common.by import By
 from BaseLayer.executorBase import ExecutorBase
 from PageObjects.Common.siteHeader import SiteHeader
 from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
-import logging
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
-
-
-class Image_listpage(SiteHeader,ExecutorBase):
+class Image_listPage(SiteHeader,ExecutorBase):
     
     def Image(self):
         return self.get_element(By.XPATH,'//*[@id="app"]/div/section/main/div/section/aside/div/ul/li[3]')
@@ -87,12 +79,12 @@ class Image_listpage(SiteHeader,ExecutorBase):
                 element = element_func()
                 if element:
                     action_func(element)
-                    logger.info(f"✅ {action_name} 成功")
+                    self.logger.info(f"✅ {action_name} 成功")
                 else:
-                    logger.warning(f"⚠️ {action_name} 元素未找到，跳过")
+                    self.logger.warning(f"⚠️ {action_name} 元素未找到，跳过")
             except (NoSuchElementException, ElementClickInterceptedException) as e:
-                logger.error(f"❌ {action_name} 失败: {str(e)}")
+                self.logger.error(f"❌ {action_name} 失败: {str(e)}")
             except Exception as e:
-                logger.error(f"❌ {action_name} 发生异常: {str(e)}")
+                self.logger.error(f"❌ {action_name} 发生异常: {str(e)}")
         
-        logger.info("✨ 图片设置流程完成（部分步骤失败已跳过）")
+        self.logger.info("✨ 图片设置流程完成（部分步骤失败已跳过）")

@@ -1,15 +1,9 @@
 from selenium.webdriver.common.by import By
 from BaseLayer.executorBase import ExecutorBase
 from PageObjects.Common.siteHeader import SiteHeader
-import logging
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
 
-class AIListPage(SiteHeader, ExecutorBase):
+class Ai_ListPage(SiteHeader, ExecutorBase):
 
     OPERATION_SLEEP = 1.0
     AI_MENU_XPATH = '//*[@id="app"]/div/section/main/div/section/aside/div/ul/li[4]'
@@ -110,10 +104,10 @@ class AIListPage(SiteHeader, ExecutorBase):
 
         for step_name, step_func in steps:
             try:
-                logger.info(f"正在执行步骤：{step_name}")
+                self.logger.info(f"正在执行步骤：{step_name}")
                 step_func() # 执行该步骤
-                logger.info(f"步骤成功：{step_name}")
+                self.logger.info(f"步骤成功：{step_name}")
             except Exception as e:
-                logger.error(f"步骤失败，但继续执行下一条：{step_name} - 错误: {str(e)}")
+                self.logger.error(f"步骤失败，但继续执行下一条：{step_name} - 错误: {str(e)}")
 
-        logger.info("AI配置流程（容错模式）执行完毕，无论成功或失败均已完成遍历。")
+        self.logger.info("AI配置流程（容错模式）执行完毕，无论成功或失败均已完成遍历。")

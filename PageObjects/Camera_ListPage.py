@@ -1,15 +1,9 @@
 from selenium.webdriver.common.by import By
 from BaseLayer.executorBase import ExecutorBase
 from PageObjects.Common.siteHeader import SiteHeader
-import logging
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
 
-class camera_listpage(SiteHeader, ExecutorBase):
+class Camera_listPage(SiteHeader, ExecutorBase):
     CAMERA_MENU_XPATH = '//*[@id="app"]/div/section/main/div/section/aside/div/ul/li[2]'
     CAPTURE_SWITCH_XPATH = '//*[@id="app"]/div/section/main/div/section/main/div/form/div[2]/div/div/span'
     WORK_MODE_INPUT_XPATH = '//*[@id="app"]/div/section/main/div/section/main/div/form/div[3]/div[1]/div/div/div[1]/input'
@@ -50,13 +44,13 @@ class camera_listpage(SiteHeader, ExecutorBase):
 
         for step_name, step_func in steps:
             try:
-                logger.info(f"🚀 开始执行: {step_name}")
+                self.logger.info(f"🚀 开始执行: {step_name}")
                 step_func()
-                logger.info(f" 成功完成: {step_name}")
+                self.logger.info(f" 成功完成: {step_name}")
             except Exception as e:
-                logger.error(f"❌ 步骤异常但继续: {step_name} | 错误: {str(e)}")
+                self.logger.error(f"❌ 步骤异常但继续: {step_name} | 错误: {str(e)}")
 
-        logger.info("📸 相机配置流程执行完毕（所有步骤已尝试）。")
+        self.logger.info("📸 相机配置流程执行完毕（所有步骤已尝试）。")
 
     #region 私有操作方法 (Individual Actions)
     def _click_camera_menu(self):

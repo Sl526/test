@@ -14,12 +14,6 @@ from selenium.common.exceptions import (
 import logging
 import time
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
-
 class ExecutorBase():
 
     OPERATION_SLEEP = 1
@@ -85,9 +79,12 @@ class ExecutorBase():
     
     def wait_for_element_disappear(self, get_element_func, seconds=5):
         WebDriverWait(self.driver, seconds).until_not(lambda d: get_element_func())
-
-    # def send_keys(self, element, text):
-    #     element.send_keys(text)
+    
+    def logger():
+        logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        return logging.getself.logger(__name__)
 
     def _wait_for_element(self, locator, timeout=None):
 
@@ -98,7 +95,7 @@ class ExecutorBase():
             )
             return element
         except TimeoutException:
-            logger.error(f"元素超时未加载：{locator}")
+            self.logger.error(f"元素超时未加载：{locator}")
             raise
 
     def _click_element(self, locator):
@@ -109,9 +106,9 @@ class ExecutorBase():
         try:
             element = self._wait_for_element(locator)
             element.click()
-            logger.info(f"成功点击元素：{locator}")
+            self.logger.info(f"成功点击元素：{locator}")
         except (ElementClickInterceptedException, NoSuchElementException) as e:
-            logger.error(f"点击元素失败：{locator}，错误：{str(e)}")
+            self.logger.error(f"点击元素失败：{locator}，错误：{str(e)}")
             raise
         finally:
             time.sleep(self.OPERATION_SLEEP)
@@ -126,9 +123,11 @@ class ExecutorBase():
             element = self._wait_for_element(locator)
             element.clear()
             element.send_keys(str(value))
-            logger.info(f"成功在元素{locator}输入值：{value}")
+            self.logger.info(f"成功在元素{locator}输入值：{value}")
         except Exception as e:
-            logger.error(f"输入值失败：{locator}，值：{value}，错误：{str(e)}")
+            self.logger.error(f"输入值失败：{locator}，值：{value}，错误：{str(e)}")
             raise
         finally:
             time.sleep(self.OPERATION_SLEEP)
+
+    
