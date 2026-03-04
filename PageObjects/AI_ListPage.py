@@ -3,7 +3,7 @@ from BaseLayer.executorBase import ExecutorBase
 from PageObjects.Common.siteHeader import SiteHeader
 
 
-class Ai_ListPage(SiteHeader, ExecutorBase):
+class AiListPage(SiteHeader, ExecutorBase):
 
     OPERATION_SLEEP = 1.0
     AI_MENU_XPATH = '//*[@id="app"]/div/section/main/div/section/aside/div/ul/li[4]'

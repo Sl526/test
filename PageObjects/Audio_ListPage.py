@@ -3,7 +3,7 @@ from BaseLayer.executorBase import ExecutorBase
 from PageObjects.Common.siteHeader import SiteHeader
 
 
-class Audio_listPage(SiteHeader, ExecutorBase):
+class AudiolistPage(SiteHeader, ExecutorBase):
 
     AUDIO_MENU_XPATH = '//*[@id="app"]/div/section/main/div/section/aside/div/ul/li[5]'
     MICROPHONE_VOLUME_XPATH = '//*[@id="app"]/div/section/main/div/section/main/div/form/div[2]/div/div/div[1]/div/input'

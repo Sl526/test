@@ -3,7 +3,7 @@ from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from BaseLayer.executorBase import ExecutorBase
 from PageObjects.Common.siteHeader import SiteHeader
 
-class Video_listPage(SiteHeader, ExecutorBase):
+class VideolistPage(SiteHeader, ExecutorBase):
 
     OPERATION_SLEEP = 1.0
     VIDEO_MENU_XPATH = '//*[@id="app"]/div/section/main/div/section/aside/div/ul/li[6]'

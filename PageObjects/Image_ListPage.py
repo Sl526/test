@@ -3,7 +3,7 @@ from BaseLayer.executorBase import ExecutorBase
 from PageObjects.Common.siteHeader import SiteHeader
 from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
 
-class Image_listPage(SiteHeader,ExecutorBase):
+class ImagelistPage(SiteHeader,ExecutorBase):
     
     def Image(self):
         return self.get_element(By.XPATH,'//*[@id="app"]/div/section/main/div/section/aside/div/ul/li[3]')

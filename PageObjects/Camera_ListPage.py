@@ -3,7 +3,7 @@ from BaseLayer.executorBase import ExecutorBase
 from PageObjects.Common.siteHeader import SiteHeader
 
 
-class Camera_listPage(SiteHeader, ExecutorBase):
+class CameralistPage(SiteHeader, ExecutorBase):
     CAMERA_MENU_XPATH = '//*[@id="app"]/div/section/main/div/section/aside/div/ul/li[2]'
     CAPTURE_SWITCH_XPATH = '//*[@id="app"]/div/section/main/div/section/main/div/form/div[2]/div/div/span'
     WORK_MODE_INPUT_XPATH = '//*[@id="app"]/div/section/main/div/section/main/div/form/div[3]/div[1]/div/div/div[1]/input'
